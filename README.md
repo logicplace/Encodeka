@@ -5,7 +5,7 @@ Note: The only conversion target encoding will ever be utf8, use iconv if you
 
 This is mostly intended for easily testing what encoding a file is in. You may
  test by specific encodings, by language, or by encoding families. This uses
- python's entire [list][http://docs.python.org/library/codecs.html], but you
+ python's entire [list](http://docs.python.org/library/codecs.html), but you
  can see it with endcodeka.py -l as well.
 
 Quick note: if you use -i it will show samples and save to files, if you use -si
