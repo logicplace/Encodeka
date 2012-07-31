@@ -275,7 +275,7 @@ def main():
 
 	isfile = not options.string
 
-	if isfile:
+	if isfile and not one:
 		tmpdir = options.output or tempfile.mkdtemp()
 		try: os.makedirs(tmpdir)
 		except OSError, e:
@@ -296,7 +296,7 @@ def main():
 		except:
 			if options.verbose: stderr.write('Could not decode with "%s"\n' % x)
 		else:
-			if options.string:
+			if options.string or one:
 				if one: print string
 				else: print u'%s: %s'  % (x, string)
 			else:

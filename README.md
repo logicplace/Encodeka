@@ -8,6 +8,9 @@ This is mostly intended for easily testing what encoding a file is in. You may
  python's entire [list](http://docs.python.org/library/codecs.html), but you
  can see it with endcodeka.py -l as well.
 
+If you only use one -e for a file (ie. you're not comparing encodings), it will
+ print the result to stdout.
+
 Quick note: if you use -i it will show samples and save to files, if you use -si
  it will print the entire input to screen. I don't suggest using -si if you
  expect newlines.
