@@ -297,7 +297,7 @@ def main():
 			if options.verbose: stderr.write('Could not decode with "%s"\n' % x)
 		else:
 			if options.string or one:
-				if one: print string
+				if one: print string.encode("utf8")
 				else: print u'%s: %s'  % (x, string)
 			else:
 				fn = os.path.join(tmpdir, "%s%stxt" % (x, os.extsep))
