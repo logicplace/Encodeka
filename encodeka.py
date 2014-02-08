@@ -226,7 +226,7 @@ def main():
 	#endif
 
 	if (len(args) == 0 and not options.stdin) or (options.encoding is None and
-		options.family is None and options.language is None
+		options.family is None and options.language is None and not options.all
 	):
 		parser.print_help()
 		return 0
