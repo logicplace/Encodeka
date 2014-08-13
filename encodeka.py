@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 #-*- coding:utf-8 -*-
 
-# MIT Licensed (c) 2012 Sapphire Becker (logicplace.com)
+# MIT Licensed (c) 2012, 2014 Sapphire Becker (logicplace.com)
 
 import os
 import errno
@@ -208,6 +208,12 @@ def main():
 	parser.add_option("-n", "--names", action="store_true",
 		help="Print list of filenames instead of samples (not usable with --string)."
 	)
+	parser.add_option("-u", "--utf8", action="store_true",
+		help="Input is in utf8 (default is to guess)."
+	)
+	parser.add_option("-A", "--ascii", action="store_true",
+		help="Input is in ASCII (default is to guess)."
+	)
 	options, args = parser.parse_args()
 
 	if options.list:
@@ -273,6 +279,12 @@ def main():
 		return 3
 	#endif
 
+	if options.utf8: data = data.decode("utf8").encode("latin1")
+	elif not options.ascii:
+		try: data = data.decode("utf8").encode("latin1")
+		except UnicodeDecodeError: pass
+	#endif
+
 	isfile = not options.string
 
 	if isfile and not one:
@@ -293,8 +305,8 @@ def main():
 
 	for x in selected:
 		try: string = data.decode(x)
-		except:
-			if options.verbose: stderr.write('Could not decode with "%s"\n' % x)
+		except UnicodeDecodeError, e:
+			if options.verbose: stderr.write('Could not decode with "%s": %s-%s\n' % (x, e.start, e.end))
 		else:
 			if options.string or one:
 				if one: print string.encode("utf8")
